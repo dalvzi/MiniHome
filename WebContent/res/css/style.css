@@ -1,0 +1,39 @@
+@CHARSET "UTF-8";
+
+header div.login{
+	padding-top: 10px;
+	padding-right: 18px;
+}
+
+header div.menu nav ul{
+	float: right;
+}
+.logo {
+    margin-left: -76px;
+}
+.logo img{
+	display: inline;
+}
+
+div.clear{
+	clear: both;
+}
+
+
+/*
+	register page
+*/
+.register_logo img{
+	max-width: 400px;
+	margin-top: -40px;
+}
+.register_body{
+	margin-top: 50px;
+}
+
+/*
+	zufang page
+*/
+.item{
+	margin: 40px 0;
+}
