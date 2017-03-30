@@ -35,7 +35,6 @@ public class UserHandle {
 		User user = (User) request.getSession().getAttribute("user");
 		List<House> houses = houseService.getHousesByUserId(user);
 		
-		map.put("user", user);
 		map.put("houses", houses);
 		
 		return "userCenterPage";
@@ -50,7 +49,7 @@ public class UserHandle {
 	public String logou(HttpServletRequest request) {
 		request.getSession().removeAttribute("user");
 		System.out.println("jjjj");
-		return "zufang";
+		return "redirect:/zufang";
 	}
 	
 	/**
@@ -62,7 +61,7 @@ public class UserHandle {
 	public String register(User user, HttpSession session){
 		userService.save(user);
 		session.setAttribute("user", user);
-		return "zufang";
+		return "redirect:/zufang";
 	}
 	
 	/**

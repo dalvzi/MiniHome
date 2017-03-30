@@ -2,6 +2,7 @@ package com.deliang.minihome.handles;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -21,9 +22,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.deliang.minihome.entities.House;
 import com.deliang.minihome.entities.Question;
+import com.deliang.minihome.entities.Reply;
 import com.deliang.minihome.entities.User;
 import com.deliang.minihome.service.HouseService;
 import com.deliang.minihome.service.QuestionService;
+import com.deliang.minihome.service.ReplyService;
 
 @Controller
 public class HouseHandle {
@@ -34,7 +37,16 @@ public class HouseHandle {
 	@Autowired 
 	private QuestionService questionService;
 	
+	@Autowired
+	private ReplyService replyService;
+	
 
+	@RequestMapping("serach")
+	public String serach() {
+		
+		return "";
+	}
+	
 	@RequestMapping("item/{id}")
 	public String item(
 			@PathVariable("id") Integer id,
@@ -46,6 +58,14 @@ public class HouseHandle {
 		
 		List<Question> questions = questionService.getList(house);
 		map.put("questions", questions);
+		
+		List<List<Reply>> replys = new ArrayList<List<Reply>>();
+		for(Question question : questions) {
+			List<Reply> list = replyService.getList(question);
+			replys.add(list);
+		}
+		map.put("replys", replys);
+		
 		session.setAttribute("house", house);
 		
 		return "itemPage";
@@ -53,9 +73,12 @@ public class HouseHandle {
 	
 	@RequestMapping(value="saveHouse", method=RequestMethod.POST)
 	public String saveHouse(
+			@RequestParam("location") String location,
+			@RequestParam("layout") String layout,
 			@RequestParam("price") double price,
 			@RequestParam("size") double size,
 			@RequestParam("floor") byte floor,
+			@RequestParam("houseDesc") String houseDesc,
 			@RequestParam("imgPath") MultipartFile file,
 			HttpServletRequest request
 			) throws IllegalStateException, IOException {
@@ -80,7 +103,8 @@ public class HouseHandle {
 //      model.addAttribute("fileUrl", request.getContextPath()+"/upload/"+fileName);  
   
 		User user = (User) request.getSession().getAttribute("user");
-		House house = new House(price, size, floor, testUpload, createTime, (byte)1, user);
+		House house = new House(location, layout, price, size, floor, houseDesc,
+				testUpload, createTime, (byte) 1, user);
 		houseService.save(house);
 		return "redirect:/zufang";
 	}

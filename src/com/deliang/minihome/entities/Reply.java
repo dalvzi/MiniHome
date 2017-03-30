@@ -13,25 +13,25 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 
-@Table(name = "MINIHOME_COMMENT")
+@Table(name = "MINIHOME_REPLY")
 @Entity
-public class Comment {
+public class Reply {
 
 	private Integer id;
-	private String Content;
+	private String content;
 	private Date createTime;
 
 	private User user;
-	private House house;
+	private Question question;
 
-	public Comment() { }
+	public Reply() { }
 
-	public Comment(String content, Date createTime, User user, House house) {
+	public Reply(String content, Date createTime, User user, Question question) {
 		super();
-		Content = content;
+		this.content = content;
 		this.createTime = createTime;
 		this.user = user;
-		this.house = house;
+		this.question = question;
 	}
 
 	@GeneratedValue
@@ -45,11 +45,11 @@ public class Comment {
 	}
 
 	public String getContent() {
-		return Content;
+		return content;
 	}
 
 	public void setContent(String content) {
-		Content = content;
+		this.content = content;
 	}
 
 	@Temporal(TemporalType.TIME)
@@ -72,20 +72,20 @@ public class Comment {
 		this.user = user;
 	}
 
-	@JoinColumn(name="HOUSE_ID")
-	@ManyToOne(targetEntity=House.class)
-	public House getHouse() {
-		return house;
+	@JoinColumn(name="QUESTION_ID")
+	@ManyToOne(targetEntity=Question.class)
+	public Question getQuestion() {
+		return question;
 	}
-
-	public void setHouse(House house) {
-		this.house = house;
+	
+	public void setQuestion(Question question) {
+		this.question = question;
 	}
-
+	
 	@Override
 	public String toString() {
-		return "Comment [id=" + id + ", Content=" + Content + ", createTime="
-				+ createTime + ", user=" + user + ", house=" + house + "]";
+		return "Comment [id=" + id + ", Content=" + content + ", createTime="
+				+ createTime + ", user=" + user + ", question=" + question + "]";
 	}
 
 }

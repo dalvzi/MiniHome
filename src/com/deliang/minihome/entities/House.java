@@ -17,9 +17,12 @@ import javax.persistence.TemporalType;
 public class House {
 
 	private Integer id;
+	private String location;
+	private String layout;
 	private double price;
 	private double size;
 	private byte floor;
+	private String houseDesc;
 	private String imgPath;
 	private Date createTime;
 	private byte onSell;
@@ -28,12 +31,16 @@ public class House {
 	
 	public House() { }
 
-	public House(double price, double size, byte floor, String imgPath,
-			Date createTime, byte onSell, User user) {
+	public House(String location, String layout, double price, double size,
+			byte floor, String houseDesc, String imgPath, Date createTime,
+			byte onSell, User user) {
 		super();
+		this.location = location;
+		this.layout = layout;
 		this.price = price;
 		this.size = size;
 		this.floor = floor;
+		this.houseDesc = houseDesc;
 		this.imgPath = imgPath;
 		this.createTime = createTime;
 		this.onSell = onSell;
@@ -51,6 +58,22 @@ public class House {
 		this.id = id;
 	}
 
+	public String getLocation() {
+		return location;
+	}
+	
+	public void setLocation(String location) {
+		this.location = location;
+	}
+	
+	public String getLayout() {
+		return layout;
+	}
+	
+	public void setLayout(String layout) {
+		this.layout = layout;
+	}
+	
 	public double getPrice() {
 		return price;
 	}
@@ -75,6 +98,15 @@ public class House {
 		this.floor = floor;
 	}
 
+	@Column(name="HOUSE_DESC")
+	public String getHouseDesc() {
+		return houseDesc;
+	}
+	
+	public void setHouseDesc(String houseDesc) {
+		this.houseDesc = houseDesc;
+	}
+	
 	@Column(name="IMG_PATH")
 	public String getImgPath() {
 		return imgPath;
@@ -84,7 +116,7 @@ public class House {
 		this.imgPath = imgPath;
 	}
 
-	@Temporal(TemporalType.TIME)
+	@Temporal(TemporalType.DATE)
 	@Column(name="CREATE_TIME")
 	public Date getCreateTime() {
 		return createTime;

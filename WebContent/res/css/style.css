@@ -1,39 +1,68 @@
 @CHARSET "UTF-8";
 
-header div.login{
+a:link {
+	text-decoration: none;
+}
+
+a:visited {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+a:active {
+	text-decoration: none;
+}
+
+header div.login {
 	padding-top: 10px;
 	padding-right: 18px;
 }
 
-header div.menu nav ul{
+header div.menu nav ul {
 	float: right;
 }
+
 .logo {
-    margin-left: -76px;
+	margin-left: -76px;
 }
-.logo img{
+
+.logo img {
 	display: inline;
 }
 
-div.clear{
+div.clear {
 	clear: both;
 }
-
 
 /*
 	register page
 */
-.register_logo img{
+.register_logo img {
 	max-width: 400px;
 	margin-top: -40px;
 }
-.register_body{
+
+.register_body {
 	margin-top: 50px;
 }
 
 /*
 	zufang page
 */
-.item{
+.item {
 	margin: 40px 0;
+}
+
+.desc {
+	margin-top: 50px;
+}
+
+/*
+	item page
+*/
+.house_show .desc {
+	margin-top: 15px;
 }
