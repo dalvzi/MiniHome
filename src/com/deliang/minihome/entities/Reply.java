@@ -52,7 +52,7 @@ public class Reply {
 		this.content = content;
 	}
 
-	@Temporal(TemporalType.TIME)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="CREATE_TIME")
 	public Date getCreateTime() {
 		return createTime;

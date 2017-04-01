@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -40,11 +41,25 @@ public class HouseHandle {
 	@Autowired
 	private ReplyService replyService;
 	
+	@RequestMapping("serachWithParam")
+	public String serachWithParam(
+			@RequestParam(value="location", required=false, defaultValue="") String location,
+			@RequestParam(value="minSize", required=false, defaultValue="0") double minSize,
+			@RequestParam(value="maxSize", required=false, defaultValue="9999999999") double maxSize,
+			@RequestParam(value="minPrice", required=false, defaultValue="0") double minPrice,
+			@RequestParam(value="maxPrice", required=false, defaultValue="9999999999") double maxPrice,
+			Map<String, Object> map) {
 
+		List<House> criteriaHouses = houseService.getCriteriaHouse(location,
+				minSize, maxSize, minPrice, maxPrice);
+
+		map.put("criteriaHouses", criteriaHouses);
+		return "serachWithResultPage";
+	}
+	
 	@RequestMapping("serach")
 	public String serach() {
-		
-		return "";
+		return "serachPage";
 	}
 	
 	@RequestMapping("item/{id}")
@@ -56,16 +71,14 @@ public class HouseHandle {
 		House house = houseService.getHouseById(id);
 		map.put("house", house);
 		
+		Map<Question, List<Reply>> questionWithReply = new HashMap<Question, List<Reply>>();
 		List<Question> questions = questionService.getList(house);
-		map.put("questions", questions);
 		
-		List<List<Reply>> replys = new ArrayList<List<Reply>>();
 		for(Question question : questions) {
 			List<Reply> list = replyService.getList(question);
-			replys.add(list);
+			questionWithReply.put(question, list);
 		}
-		map.put("replys", replys);
-		
+		map.put("questionWithReply", questionWithReply);
 		session.setAttribute("house", house);
 		
 		return "itemPage";

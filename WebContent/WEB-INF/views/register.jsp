@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>    
 <!DOCTYPE>
 <html lang="zh-CN">
@@ -14,88 +15,57 @@
 </head>
 <body>
 
-	<header>
-		<div class="container">
-			<div class="row text-right login">
-				<span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span><a
-					href="login" class="login" id="login">登录</a></span>/<span><a href="register"
-					class="register">注册</a></span>
+	<c:import url="commen/header.jsp"></c:import>
+
+	<div class="container register_body">
+		<div class="row">
+			<div class="col-lg-7 register_logo">
+				<img alt=""
+					src="${pageContext.request.contextPath }/res/images/register_logo.png">
 			</div>
-			<div class="row menu">
-				
-				<nav class="navbar">
-					<span class="logo">
-						<a href="${pageContext.request.contextPath }">
-							<img alt="" src="${pageContext.request.contextPath }/res/images/logo.jpg">
-						</a>
-					</span>
-				
-					<ul class="nav nav-pills">
-						<li role="presentation"><a
-							href="${pageContext.request.contextPath }/index.jsp">首页</a></li>
-						<li role="presentation"><a href="zufang">租房</a></li>
-						<li role="presentation"><a href="serach">搜索</a></li>
-						<li role="presentation"><a href="mine ">个人中心</a></li>
-						<li></li>
-					</ul>
-				</nav>
-			</div>
-		</div>
-	</header>
-	
-		<div class="container register_body">
-			<div class="row">
-				<div class="col-lg-7 register_logo">
-					<img alt="" src="${pageContext.request.contextPath }/res/images/register_logo.png">
-				</div>
-				
-				<div class="col-lg-5">
-					<div class="col-lg-7">
-						<form:form action="saveUser" method="post" modelAttribute="user">
-							<div class="form-group usernameGroup">
-								<form:input path="username" class="form-control" id="username"
-									placeholder="用户名" />
-							</div>
-							<div class="form-group">
-								<form:input path="password" type="password" class="form-control password"
-									id="password" placeholder="密码" />
-							</div>
-							<div class="form-group passwordGroup">
-								<input type="password" class="form-control password" id="password2"
-									placeholder="再输入一次密码">
-							</div>
-							<div class="form-group">
-								<form:input path="email" type="email" class="form-control"
-									id="email" placeholder="email" />
-							</div>
-							<div class="form-group">
-								<form:input path="telephone" class="form-control" id="telephone"
-									placeholder="手机" />
-							</div>
-	
-							<button type="submit" class="btn btn-default">注册</button>
-						</form:form>
-					</div>	
+
+			<div class="col-lg-5">
+				<div class="col-lg-7">
+					<form:form action="saveUser" method="post" modelAttribute="user">
+						<div class="form-group">
+							<form:input path="nikename" class="form-control" id="nikename"
+								placeholder="昵称" />
+						</div>
+						<div class="form-group usernameGroup">
+							<form:input path="username" class="form-control" id="username"
+								placeholder="用户名" />
+						</div>
+						<div class="form-group">
+							<form:input path="password" type="password"
+								class="form-control password" id="password" placeholder="密码" />
+						</div>
+						<div class="form-group passwordGroup">
+							<input type="password" class="form-control password"
+								id="password2" placeholder="再输入一次密码">
+						</div>
+						<div class="form-group">
+							<form:input path="email" type="email" class="form-control"
+								id="email" placeholder="email" />
+						</div>
+						<div class="form-group">
+							<form:input path="telephone" class="form-control" id="telephone"
+								placeholder="手机" />
+						</div>
+
+						<button type="submit" class="btn btn-default">注册</button>
+					</form:form>
 				</div>
 			</div>
 		</div>
-		
+	</div>
+
 	<footer>
 	
 	</footer>	
 	
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/res/scripts/jquery.min.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/res/scripts/layer/layer.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/res/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/res/slides/responsiveslides.js"></script>
-		
+	<c:import url="commen/footer.jsp"></c:import>
+			
 	<script type="text/javascript">
-	
-		
 	
 		$(function(){
 			//ajax检查用户名是否可用
@@ -103,7 +73,7 @@
 				var username = $(this).val();
 				username = $.trim(username);
 				var url = "${pageContext.request.contextPath}/validateRegisterUsername";
-				var args = {"username":username, date:new Date()};
+				var args = {"account":account, date:new Date()};
 				$.post(url, args, function(data){
 					if(data == "0"){
 						$(".usernameGroup font:eq(0)").remove();

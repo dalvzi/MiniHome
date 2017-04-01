@@ -25,4 +25,9 @@ public class QuestionService {
 		return questionRepostion.getByHouse(house);
 	}
 	
+	public Question getById(int id) {
+		return questionRepostion.getById(id);
+	}
+	
+	
 }

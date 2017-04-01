@@ -22,58 +22,18 @@
 		<c:redirect url="login"></c:redirect>
 	</c:if>
 
-	<header>
-		<div class="container">
-			<div class="row text-right login">
-				<c:if test="${sessionScope.user == null }">
-					<span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span><a
-						href="login" class="login" id="login">登录</a></span>/<span><a href="register"
-						class="register">注册</a></span>
-				</c:if>
-				<c:if test="${sessionScope.user != null }">
-					<span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span><font
-						class="login" id="login">欢迎你,${sessionScope.user.username }</font></span>/<span><a href="logout"
-						class="register">登出</a></span>
-				</c:if>
-			</div>
-			<div class="row menu">
-
-				
-				<nav class="navbar">
-					<span class="logo"> <a
-						href="${pageContext.request.contextPath }"> <img alt=""
-							src="${pageContext.request.contextPath }/res/images/logo.jpg">
-					</a>
-					</span>
-					<ul class="nav nav-pills">
-						<li role="presentation"><a
-							href="${pageContext.request.contextPath }/index.jsp">首页</a></li>
-						<li role="presentation" class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"
-								role="button" aria-haspopup="true" aria-expanded="false">
-								租房
-								<span class="caret"> </span>		
-							</a>
-							<ul class="dropdown-menu">
-								<li><a href="registerHouse">我有房源</a></li>
-								<li><a href="zufang">我要看房</a></li>
-							</ul>
-						</li>
-						<li role="presentation"><a href="serach">搜索</a></li>
-						<li role="presentation"><a href="userCenter">个人中心</a></li>
-						<li></li>
-					</ul>
-				</nav>
-			</div>
-		</div>
-	</header>
+	<c:import url="commen/header.jsp"></c:import>
 
 	<div class="container">
 		<div class="user">
+		
 			${sessionScope.user.username}
 			${sessionScope.user.password}
 			${sessionScope.user.telephone}
-			${sessionScope.user.email}		
+			${sessionScope.user.email}	
+			<img alt="" src="${sessionScope.user.headImgPath }">	
+			
+			<a href="${pageContext.request.contextPath }/updateUser">更新用户信息</a>
 		</div>
 		<div class="col-lg-10 col-lg-offset-1 houses">
 			<c:if test="${houses != null }">
@@ -98,7 +58,7 @@
 								<c:if test="${house.onSell == 1 }">
 									在租
 								</c:if>
-								<c:if test="${house.omsell == 0 }">
+								<c:if test="${house.onSell == 0 }">
 									已经出租
 								</c:if>
 							</td>
@@ -114,13 +74,7 @@
 		</div>
 	</div>
 	
-	
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/res/scripts/jquery.min.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/res/scripts/layer/layer.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/res/bootstrap/js/bootstrap.min.js"></script>
+	<c:import url="commen/footer.jsp"></c:import>
 	
 </body>
 </html>

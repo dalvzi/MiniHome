@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <!DOCTYPE>
 <html lang="zh-CN">
 <head>
@@ -14,14 +15,16 @@
 </head>
 <body>
 
+	<c:import url="commen/header.jsp"></c:import>
+
 	<div class="container">
 
 		<div class="col-lg-5 col-lg-offset-3">
 			<form action="validate" method="POST">
 				<div class="form-group">
-					<label for="username">用户名: </label> <input
+					<label for="username">账　号: </label> <input
 						class="form-control" id="username"
-						name="username" placeholder="用户名">
+						name="username" placeholder="账号">
 				</div>
 				<div class="form-group">
 					<label for="password">密　码: </label> <input
@@ -34,9 +37,7 @@
 		</div>
 	</div>
 
-	
-	<script type="text/javascript" src="${pageContext.request.contextPath }/res/scripts/jquery.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath }/res/scripts/layer/layer.js"></script>
+	<c:import url="commen/footer.jsp"></c:import>	
 	
 	<script type="text/javascript">
 	
@@ -50,12 +51,11 @@
 				$.post(url, args,function(data){
 					if(data == "success"){
 						//关闭弹窗
-						console.log("hahahhh");
 						parent.layer.closeAll();
 						$(location).attr('href', 'zufang');
 					}if(data == "error"){
 						$(".error font:eq(0)").remove();
-						$("<font color=#FF5722>账号密码不匹配</font>").appendTo(".error");
+						$("<font color=#FF5722>用户名密码不匹配</font>").appendTo(".error");
 					}
 				});
 				return false;

@@ -48,7 +48,6 @@ public class UserHandle {
 	@RequestMapping("logout")
 	public String logou(HttpServletRequest request) {
 		request.getSession().removeAttribute("user");
-		System.out.println("jjjj");
 		return "redirect:/zufang";
 	}
 	
@@ -59,6 +58,7 @@ public class UserHandle {
 	 */
 	@RequestMapping("saveUser")
 	public String register(User user, HttpSession session){
+		user.setHeadImgPath("ll");
 		userService.save(user);
 		session.setAttribute("user", user);
 		return "redirect:/zufang";
@@ -90,9 +90,11 @@ public class UserHandle {
 	@RequestMapping(value="validate", method=RequestMethod.POST)
 	public String validateLogin(@RequestParam(value="username") String username,
 			@RequestParam(value="password") String password, HttpSession session) {
+		
+		System.out.println("进行到了");
 
 		User user = userService.get(username, password);
-		if(user != null &&username.equals(user.getUsername()) && password.equals(user.getPassword())) {
+		if(user != null && username.equals(user.getUsername()) && password.equals(user.getPassword())) {
 			//session
 			session.setAttribute("user", user);
 			return "success";

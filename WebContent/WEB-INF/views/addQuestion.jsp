@@ -18,6 +18,8 @@
 		<c:redirect url="login"></c:redirect>
 	</c:if>
 
+	<c:import url="commen/header.jsp"></c:import>
+
 	<div class="container">
 
 		<div class="col-lg-5 col-lg-offset-3">
@@ -38,6 +40,8 @@
 		</div>
 
 	</div>
+
+	<c:import url="commen/footer.jsp"></c:import>
 
 </body>
 </html>

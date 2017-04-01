@@ -11,4 +11,6 @@ public interface QuestionRepostion extends JpaRepository<Question, Integer>{
 	
 	List<Question> getByHouse(House house);
 	
+	Question getById(int id);
+	
 }

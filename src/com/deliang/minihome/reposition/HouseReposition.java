@@ -7,9 +7,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.deliang.minihome.entities.House;
 import com.deliang.minihome.entities.User;
 
-public interface HouseReposition extends JpaRepository<House, Integer>{
+public interface HouseReposition extends JpaRepository<House, Integer> {
 
 	House getById(Integer id);
-	
+
 	List<House> getByUser(User user);
+
+	List<House> getByLocationLikeOrSizeBetweenOrPriceBetween(String location,
+			double minSize, double maxSize, double minPrice, double maxPrice);
 }

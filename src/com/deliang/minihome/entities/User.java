@@ -1,5 +1,6 @@
 package com.deliang.minihome.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,6 +14,8 @@ public class User {
 
 	private Integer id;
 	
+	private String nikename;
+	
 	private String username;
 	
 	private String password;
@@ -20,17 +23,38 @@ public class User {
 	private String telephone;
 	
 	private String email;
+	
+	private String headImgPath;
 
 	public User() { }
 
-	public User(String username, String password, String telephone, String email) {
+	public User(String username, String nikename, String password, String telephone, String email, String headImgPath) {
 		super();
 		this.username = username;
+		this.nikename = nikename;
 		this.password = password;
 		this.telephone = telephone;
 		this.email = email;
+		this.headImgPath = headImgPath;
 	}
 
+	@Column(name="HEAD_IMG_PATH")
+	public String getHeadImgPath() {
+		return headImgPath;
+	}
+	
+	public void setHeadImgPath(String headImgPath) {
+		this.headImgPath = headImgPath;
+	}
+	
+	public String getNikename() {
+		return nikename;
+	}
+	
+	public void setNikename(String nikename) {
+		this.nikename = nikename;
+	}
+	
 	public String getPassword() {
 		return password;
 	}
@@ -74,10 +98,11 @@ public class User {
 		this.username = username;
 	}
 
+	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password="
-				+ password + ", telephone=" + telephone + ", email=" + email
-				+ "]";
+		return "User [id=" + id + ", nikename=" + nikename + ", username="
+				+ username + ", password=" + password + ", telephone="
+				+ telephone + ", email=" + email + "]";
 	}
 
 }
