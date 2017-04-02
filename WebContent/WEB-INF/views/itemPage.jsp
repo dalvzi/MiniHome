@@ -41,8 +41,15 @@
 						<div class="desc">小区 : ${house.location}</div>
 						<div class="desc">发布时间 : ${house.createTime}</div>
 						<hr>
-						<div class="desc">联系人 : ${house.user.nikename}</div>
-						<div class="desc">联系方式 : ${house.user.telephone}</div>
+						<div class="row">
+							<div class="col-lg-3" style="padding-top: 15px">
+								<img alt="" src="${house.user.headImgPath }" width="70px">
+							</div>
+							<div class="col-lg-6">
+								<div class="desc">联系人 : ${house.user.nikename}</div>
+								<div class="desc">联系方式 : ${house.user.telephone}</div>
+							</div>	
+						</div>
 					</div>
 				</div>
 
@@ -53,18 +60,36 @@
 			<div class="box_pa">
 				<a href="${pageContext.request.contextPath }/addQuestion">添加问题</a>
 				<div class="questions">
-					${questionWithReply }
 					<c:if test="${questionWithReply != null }">
 						<c:forEach items="${questionWithReply }" var="questionItem">
-							<h4>${questionItem.key.user.nikename} : ${questionItem.key.title }</h4>
-							<div>${questionItem.key.content }</div>
+							<div class="row">
+								<div class="col-lg-2">
+									<img alt="" src="${questionItem.key.user.headImgPath }" class="headImg">
+								</div>
+								<div class="col-lg-2">
+									<h4>
+										${questionItem.key.user.nikename} 
+									</h4>
+										${questionItem.key.createTime }
+								</div>
+								<div class="italk">
+									<h4> ${questionItem.key.title }</h4>
+									<div>${questionItem.key.content }</div>
+								</div>
+							</div>
+							
 							
 							<c:if test="${questionItem.value != null }">
 								
 									<c:forEach items="${questionItem.value }" var="reply">
-										<div class="row">	
+										<div class="row reply">	
 											<div class="col-lg-offset-1">
-												${reply.user.nikename } : ${reply.content }
+												<div class="col-lg-1">
+													<img alt="" src="${reply.user.headImgPath }" class="headImg">
+												</div>
+												<div class="col-lg-9 replyContent italk">
+													${reply.user.nikename } : ${reply.content }
+												</div>
 											</div>
 										</div>	
 									</c:forEach>

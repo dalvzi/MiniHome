@@ -16,10 +16,15 @@ a:active {
 	text-decoration: none;
 }
 
-.box_pa{
-	background-color: #f5f5f5;
+.bg {
+	background-color: #f1f1f1;
+}
+
+.box_pa {
+	background-color: #fff;
 	border-radius: 4px;
 	padding: 8px;
+	
 }
 
 header div.login {
@@ -59,7 +64,7 @@ div.clear {
 	zufang page
 */
 .item {
-	margin: 40px 0;
+	margin: 20px 0;
 }
 
 .desc {
@@ -70,5 +75,31 @@ div.clear {
 	item page
 */
 .house_show .desc {
+	margin-top: 15px;
+}
+
+.headImg {
+	width: 60px;
+}
+
+.reply {
+	padding: 10px 0;
+}
+
+.replyContent {
+	margin-top: 5px;
+}
+
+.italk {
+	border: 1px solid #ececec;
+	padding: 10px;
+	position: relative;
+	border-radius: 3px;
+}
+
+/*
+	userCenter page
+*/
+.user {
 	margin-top: 15px;
 }

@@ -27,10 +27,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<c:if test="${page == null || page.numberOfElements == 0 }">没有任何记录</c:if>
 
+
 	<div class="container">
 		<c:if test="${page != null || page.numberOfElements != 0 }">
 			<c:forEach items="${page.content }" var="house">
-				<div class="row item">
+				<div class="row item box_pa">
 					<div class="col-lg-3">
 						<a href="item/${house.id }"> <img alt="网络延迟"
 							src="${house.imgPath }" width="170px" class="img-rounded">
@@ -39,10 +40,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 					<div class="col-lg-6 collg-offset-1 desc">
 						<span>
-							<h4>
+							<h3>
 								<a href="item/${house.id }"> ${house.location }
 									${house.layout } ${house.price}元 </a>
-							</h4>
+							</h3>
 						</span> <span> ${house.location } ${house.layout } ${house.size }
 							平 </span>
 					</div>
@@ -52,6 +53,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</h2>
 					</div>
 				</div>
+				<hr>
 			</c:forEach>
 
 			<div>
@@ -68,8 +70,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		</c:if>
 	</div>
-
+	
 	<c:import url="commen/footer.jsp"></c:import>
+
+	
 
 </body>
 </html>

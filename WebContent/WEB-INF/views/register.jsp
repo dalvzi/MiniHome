@@ -17,6 +17,11 @@
 
 	<c:import url="commen/header.jsp"></c:import>
 
+	<c:set value="${pageContext.request.contextPath }/saveUser" var="url"></c:set>
+	<c:if test="${employee.id != null }">
+		<c:set value="${pageContext.request.contextPath }/updateUserWithParam/${user.id}" var="url"></c:set>
+	</c:if>
+
 	<div class="container register_body">
 		<div class="row">
 			<div class="col-lg-7 register_logo">
@@ -26,7 +31,13 @@
 
 			<div class="col-lg-5">
 				<div class="col-lg-7">
-					<form:form action="saveUser" method="post" modelAttribute="user">
+					<form:form action="${url }" method="post" modelAttribute="user">
+
+						<c:if test="${user.id != null }">
+							<form:hidden path="id" />
+							<input type="hidden" name="_method" value="PUT" />
+						</c:if>
+
 						<div class="form-group">
 							<form:input path="nikename" class="form-control" id="nikename"
 								placeholder="昵称" />
@@ -51,8 +62,13 @@
 							<form:input path="telephone" class="form-control" id="telephone"
 								placeholder="手机" />
 						</div>
-
-						<button type="submit" class="btn btn-default">注册</button>
+						<c:if test="${user == null }">
+							<button type="submit" class="btn btn-default">注册</button>
+						</c:if>
+						<c:if test="${user != null }">
+							<button type="submit" class="btn btn-default">提交</button>
+						</c:if>
+							
 					</form:form>
 				</div>
 			</div>
@@ -68,6 +84,12 @@
 	<script type="text/javascript">
 	
 		$(function(){
+			
+			var user = "${user}";
+			if(user != ""){
+				$("title").html("用户修改");
+			}
+			
 			//ajax检查用户名是否可用
 			$("#username").blur(function(){
 				var username = $(this).val();

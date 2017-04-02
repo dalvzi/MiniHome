@@ -1,5 +1,7 @@
 package com.deliang.minihome.handles;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -8,10 +10,12 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.deliang.minihome.entities.House;
 import com.deliang.minihome.entities.User;
@@ -26,6 +30,56 @@ public class UserHandle {
 	
 	@Autowired
 	private HouseService houseService;
+	
+	public User resetSession(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		User user2 = userService.get(user.getId());
+		session.removeAttribute("user");
+		session.setAttribute("user", user2);
+		return user2;
+	}
+	
+	@RequestMapping(value="saveHeadImg", method=RequestMethod.POST)
+	public String updateHeadImg(
+			@RequestParam("file") MultipartFile file,
+			@RequestParam("id") Integer id,
+			HttpServletRequest request) {
+		
+		String filePathRoot = "E:/upload/";
+		String filePath = "/upload/";
+		String headImgPathToDataBase = filePath + file.getOriginalFilename();
+		System.out.println("------------"+headImgPathToDataBase);
+		String headImgPathToHardDisk = filePathRoot + file.getOriginalFilename();
+		
+		User user = userService.get(id);
+		user.setHeadImgPath(headImgPathToDataBase);
+		userService.save(user);
+		resetSession(request);
+		try {
+			file.transferTo(new File(headImgPathToHardDisk));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:userCenter";
+	}
+	
+	@RequestMapping(value="updateUserWithParam/{id}", method=RequestMethod.PUT)
+	public String updateUserWithParam(User user) {
+		userService.save(user);
+		return "redirect:/userCenter";
+	}
+	
+	@RequestMapping(value="updateUser/{id}", method=RequestMethod.GET)
+	public String updateUser(
+			@PathVariable("id") Integer id,
+			Map<String, Object> map) {
+		
+		User user = userService.get(id);
+		map.put("user", user);
+		return "register";
+	}
 	
 	@RequestMapping("userCenter")
 	public String userCenter(
@@ -58,7 +112,7 @@ public class UserHandle {
 	 */
 	@RequestMapping("saveUser")
 	public String register(User user, HttpSession session){
-		user.setHeadImgPath("ll");
+		user.setHeadImgPath("/upload/baseHead.jpg");
 		userService.save(user);
 		session.setAttribute("user", user);
 		return "redirect:/zufang";

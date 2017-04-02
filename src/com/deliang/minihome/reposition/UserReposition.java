@@ -9,4 +9,6 @@ public interface UserReposition extends JpaRepository<User, Integer> {
 	User getByUsernameAndPassword(String username, String password);
 	
 	User getByUsername(String username);
+	
+	User getById(Integer id);
 }

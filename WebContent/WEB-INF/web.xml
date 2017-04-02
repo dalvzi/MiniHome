@@ -28,6 +28,17 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
+	<!-- 配置可以把 POST 请求转为 PUT、DELETE 请求的 Filter -->
+	<filter>
+		<filter-name>HiddenHttpMethodFilter</filter-name>
+		<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>HiddenHttpMethodFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
 	<!-- 配置SpringMVC -->
 	<servlet>
 		<servlet-name>springDispatcherServlet</servlet-name>
@@ -42,4 +53,5 @@
 		<servlet-name>springDispatcherServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	
 </web-app>

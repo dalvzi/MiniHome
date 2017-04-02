@@ -1,5 +1,6 @@
 package com.deliang.minihome.service;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +13,12 @@ public class UserService {
 
 	@Autowired
 	private UserReposition userReposition;
+	
+	public User get(Integer id) {
+		return userReposition.getById(id);
+	}
+	
+
 	
 	@Transactional
 	public User get(String username, String password) {

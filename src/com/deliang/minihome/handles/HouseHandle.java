@@ -10,11 +10,11 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -41,6 +41,48 @@ public class HouseHandle {
 	@Autowired
 	private ReplyService replyService;
 	
+	@ModelAttribute
+	public void getHouse(
+			@RequestParam(value="id", required=false) Integer id,
+			Map<String, Object> map) {
+		
+		if(id != null) {
+			House house = houseService.get(id);
+			map.put("house", house);
+		}
+	}
+	
+	@RequestMapping(value="updateHouseWithParam/{id}", method=RequestMethod.PUT)
+	public String updateHouseWithParam(House house) {
+		
+		houseService.save(house);
+		return "redirect:/userCenter";
+	}
+	
+	@RequestMapping(value="updateHouse/{id}", method=RequestMethod.GET)
+	public String updateHouse(
+			@PathVariable("id") Integer id,
+			Map<String, Object> map) {
+		
+		House house = houseService.get(id);
+		map.put("house", house);
+		return "registerHouse";
+	}
+	
+	@RequestMapping(value="houseUpOrDown/{id}", method=RequestMethod.GET)
+	public String houseUpOrDown(@PathVariable("id") Integer id) {
+		
+		houseService.houseUpOrDown(id);
+		return "redirect:/userCenter";
+	}
+	
+	@RequestMapping(value="deleteHouse/{id}", method=RequestMethod.DELETE)
+	public String delete(@PathVariable("id") Integer id) {
+		
+		houseService.delete(id);
+		return "redirect:/userCenter";
+	}
+	
 	@RequestMapping("serachWithParam")
 	public String serachWithParam(
 			@RequestParam(value="location", required=false, defaultValue="") String location,
@@ -65,8 +107,7 @@ public class HouseHandle {
 	@RequestMapping("item/{id}")
 	public String item(
 			@PathVariable("id") Integer id,
-			Map<String, Object> map,
-			HttpSession session) {
+			Map<String, Object> map) {
 		
 		House house = houseService.getHouseById(id);
 		map.put("house", house);
@@ -79,7 +120,6 @@ public class HouseHandle {
 			questionWithReply.put(question, list);
 		}
 		map.put("questionWithReply", questionWithReply);
-		session.setAttribute("house", house);
 		
 		return "itemPage";
 	}
@@ -127,7 +167,9 @@ public class HouseHandle {
 	 * @return
 	 */
 	@RequestMapping("registerHouse")
-	public String registerHouse() {
+	public String registerHouse(Map<String, Object> map) {
+		House house = new House();
+		map.put("house", house);
 		return "registerHouse";
 	}
 	

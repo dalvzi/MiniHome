@@ -21,10 +21,26 @@ public class HouseService {
 	@Autowired
 	private HouseReposition houseReposition;
 	
-//	public Map<Question, Reply> getQuestionWithReply() {
-//		
-//		return null;
-//	}
+	
+	
+	public int houseUpOrDown(Integer id) {
+		House house = get(id);
+		if(1 == house.getOnSell()) {
+			house.setOnSell((byte)0);
+		}else if(0 == house.getOnSell()) {
+			house.setOnSell((byte)1);
+		}
+		save(house);
+		return house.getOnSell();
+	}
+	
+	public House get(Integer id) {
+		return houseReposition.getById(id);
+	}
+	
+	public void delete(Integer id) {
+		houseReposition.delete(id);
+	}
 
 	public List<House> getCriteriaHouse(String location, double minSize,
 			double maxSize, double minPrice, double maxPrice) {
