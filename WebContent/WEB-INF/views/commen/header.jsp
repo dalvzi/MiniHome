@@ -17,10 +17,10 @@
 			</c:if>
 		</div>
 		<div class="row menu">
-			<nav class="navbar">
-				<span class="logo col-lg-offset-1"> <a
+			<nav class="navbar col-xs-offset-1">
+				<span class="logo"> <a
 					href="${pageContext.request.contextPath }"> <img alt=""
-						src="${pageContext.request.contextPath }/res/images/logo.jpg"></a>
+						src="${pageContext.request.contextPath }/res/images/logo.jpg" class="img-responsive"></a>
 				</span>
 				<ul class="nav nav-pills">
 					<li role="presentation"><a

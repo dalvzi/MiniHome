@@ -2,7 +2,6 @@ package com.deliang.minihome.handles;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -191,7 +190,7 @@ public class HouseHandle {
 			}
 		} catch (Exception e) { }
 		
-		Page<House> page = houseService.getPage(pageNo, 10);
+		Page<House> page = houseService.getPage(pageNo, 6);
 		map.put("page", page);
 		
 		return "zufangPage";

@@ -31,14 +31,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<c:if test="${criteriaHouses != null}">
 			<c:forEach items="${criteriaHouses}" var="house">
 				<div class="row item">
-					<div class="col-lg-10 col-lg-offset-1">
-						<div class="col-lg-3">
+					<div class="col-xs-10 col-xs-offset-1">
+						<div class="col-xs-3">
 							<a href="item/${house.id }"> <img alt="网络延迟"
 								src="${house.imgPath }" width="170px" class="img-rounded">
 							</a>
 						</div>
 						
-						<div class="col-lg-6 collg-offset-1 desc">
+						<div class="col-xs-6 collg-offset-1 desc">
 							<span>
 								<h4>
 									<a href="item/${house.id }"> ${house.location }
@@ -52,7 +52,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								${house.size } 平
 							</span>
 						</div>
-						<div class="col-lg-3 text-center desc">
+						<div class="col-xs-3 text-center desc">
 							<h2><font color="#E4393C">${house.price }元</font></h2>
 						</div>
 						

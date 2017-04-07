@@ -19,7 +19,7 @@
 	<c:import url="commen/header.jsp"></c:import>
 	
 	<div class="container">
-		<div class="col-lg-5 col-lg-offset-3">
+		<div class="col-xs-5 col-xs-offset-3">
 			<form action="serachWithParam" method="post" enctype="multipart/form-data">
 			
 				<div class="form-group">
@@ -27,16 +27,26 @@
 					<input class="form-control" name="location" id="location" placeholder="位置">
 				</div>
 				<div class="form-group">
-					<label for="minPrice">最低价格: (每月)</label> 
-					<input class="form-control" name="minPrice" id="minPrice" placeholder="最低价格">
-					--
-					<input class="form-control" name="maxPrice" id="maxPrice" placeholder="最高价格">
+					<label for="minPrice">价格: (每月)</label> 
+					<div class="row">
+						<div class="col-xs-6">
+							<input class="form-control" name="minPrice" id="minPrice" placeholder="最低价格">
+						</div>
+						<div class="col-xs-6">
+							<input class="form-control" name="maxPrice" id="maxPrice" placeholder="最高价格">
+						</div>
+					</div>
 				</div>
 				<div class="form-group">
 					<label for="minSize">房屋大小: </label> 
-					<input class="form-control" name="minSize" id="minSize" placeholder="最小面积">
-					--
-					<input class="form-control" name="maxSize" id="maxSize" placeholder="最大面积">
+					<div class="row">
+						<div class="col-xs-6">
+							<input class="form-control" name="minSize" id="minSize" placeholder="最小面积">
+						</div>
+						<div class="col-xs-6">
+							<input class="form-control" name="maxSize" id="maxSize" placeholder="最大面积">
+						</div>
+					</div>	
 				</div>
 
 				<button type="submit" class="btn btn-default">Submit</button>

@@ -23,8 +23,9 @@ a:active {
 .box_pa {
 	background-color: #fff;
 	border-radius: 4px;
-	padding: 8px;
-	
+	/*
+		padding: 8px;
+	*/
 }
 
 header div.login {
@@ -41,7 +42,8 @@ header div.menu nav ul {
 }
 
 .logo img {
-	display: inline;
+	widows: 100%;
+	display: inline-block;
 }
 
 div.clear {
@@ -49,8 +51,8 @@ div.clear {
 }
 
 /*
-	register page
-*/
+		register page
+	*/
 .register_logo img {
 	max-width: 400px;
 	margin-top: -40px;
@@ -61,25 +63,34 @@ div.clear {
 }
 
 /*
-	zufang page
-*/
+		zufang page
+	*/
 .item {
 	margin: 20px 0;
 }
 
+.item img {
+	widows: 100%;
+}
+
 .desc {
-	margin-top: 50px;
+	margin-top: 10px;
+	padding-top: 20px;
 }
 
 /*
-	item page
-*/
+		item page
+	*/
 .house_show .desc {
 	margin-top: 15px;
 }
 
+.house_show img {
+	widows: 100%;
+}
+
 .headImg {
-	width: 60px;
+	width: 100%;
 }
 
 .reply {
@@ -90,16 +101,45 @@ div.clear {
 	margin-top: 5px;
 }
 
-.italk {
-	border: 1px solid #ececec;
-	padding: 10px;
-	position: relative;
-	border-radius: 3px;
+@media (min-width: @screen-lg-min){
+	.italk {
+		border: 1px solid #ececec;
+		padding: 10px;
+		position: relative;
+		border-radius: 3px;
+	}
+}
+@media (min-width: @screen-sm-min){}
+	.italk {
+		border: 1px solid #ececec;
+		padding: 3px;
+		margin: 0 0;
+		position: relative;
+		border-radius: 3px;
+	}
 }
 
 /*
-	userCenter page
-*/
+		userCenter page
+	*/
 .user {
 	margin-top: 15px;
+}
+
+/*
+		footer page temp
+	*/
+.foot {
+	margin-top: 30px;
+	padding-top: 15px;
+	background-color: #333;
+}
+
+.foot p {
+	color: #fff;
+}
+
+.foot pre {
+	color: #fff;
+	background-color: #333;
 }

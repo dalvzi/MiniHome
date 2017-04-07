@@ -6,8 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
-
 @Table(name = "MINIHOME_USER")
 @Entity
 public class User {

@@ -32,11 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<div class="container">
 		<div class="user row box_pa">
-
-			${sessionScope.user.password}
-			${sessionScope.user.telephone} ${sessionScope.user.email}
-
-			<div class="img_show img_show1 col-lg-2 col-lg-offset-2">
+			<div class="img_show img_show1 col-lg-1 col-lg-offset-2 col-xs-3">
 				<form action="saveHeadImg" method="post"
 					enctype="multipart/form-data" class="fileForm">
 					<a href="" class="openFileInput"> <img
@@ -47,17 +43,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<input type="submit" style="display: none" class="submit" />
 				</form>
 			</div>
-			<div class="col-lg-8 ">
+			<div class="col-lg-8 col-xs-9">
 				<div class="row">
-					${sessionScope.user.username} 
-					${sessionScope.user.nikename }
+					<div class="col-xs-12">
+						<div>用户名 : ${sessionScope.user.username} </div>
+					</div>
+				</div>	
+				<div class="row">	
+					<div class="col-xs-12">
+						<div>昵称 : ${sessionScope.user.nikename }</div>
+					</div>	
 				</div>
 				<div class="row">
-					${sessionScope.user.telephone }
-					${sessionScope.user.email }
+					<div class="col-xs-12">
+						<div>电话 : ${sessionScope.user.telephone }</div>
+					</div>
+				</div>
+				<div class="row">	
+					<div class="col-xs-12">
+						<div>邮箱 : ${sessionScope.user.email }</div>
+					</div>
 				</div>
 				<div class="row">
-					<div class="col-lg-offset-8">
+					<div class="col-lg-offset-4 col-xs-12">
 						<a href="${pageContext.request.contextPath }/updateUser/${sessionScope.user.id}">更新用户信息</a>
 					</div>
 				</div>
@@ -67,7 +75,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		<hr>
 		
-		<div class="col-lg-10 col-lg-offset-1 houses box_pa">
+		<div class="col-lg-10 col-lg-offset-1 col-xs-12 box_pa houses">
 			<c:if test="${houses != null }">
 				<table class="table table-hover table-responsive">
 					<tr>

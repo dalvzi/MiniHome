@@ -22,7 +22,7 @@
 
 	<div class="container">
 
-		<div class="col-lg-5 col-lg-offset-3">
+		<div class="col-xs-5 col-xs-offset-3">
 			<form action="saveQuestion" method="POST">
 				<div class="form-group">
 					<label for="title">标题: </label> <input class="form-control"

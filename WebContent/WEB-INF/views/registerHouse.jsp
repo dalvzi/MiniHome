@@ -30,7 +30,7 @@
 	</c:if>
 	
 	<div class="container">
-		<div class="col-lg-5 col-lg-offset-3">
+		<div class="col-lg-5 col-lg-offset-3 col-xs-8 col-xs-offset-2">
 				
 				<form:form action="${url }" method="POST" modelAttribute="house" enctype="${encode }">
 			

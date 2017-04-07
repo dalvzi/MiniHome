@@ -39,9 +39,10 @@
 			<div class="row menu">
 
 				
-				<nav class="navbar">
-					<span class="logo"> <a
-						href="${pageContext.request.contextPath }"> <img alt=""
+				<nav class="navbar col-xs-offset-1">
+					<span class="logo"> 
+					
+					<a href="${pageContext.request.contextPath }"> <img alt=""
 							src="${pageContext.request.contextPath }/res/images/logo.jpg">
 					</a>
 					</span>
@@ -73,13 +74,13 @@
 		<div class="xxx">
 			<ul class="rslides" id="dowebok">
 				<li><img
-					src="${pageContext.request.contextPath }/res/slides/images/1.jpg"
+					src="${pageContext.request.contextPath }/res/slides/images/1.png"
 					alt=""></li>
 				<li><img
-					src="${pageContext.request.contextPath }/res/slides/images/2.jpg"
+					src="${pageContext.request.contextPath }/res/slides/images/2.png"
 					alt=""></li>
 				<li><img
-					src="${pageContext.request.contextPath }/res/slides/images/3.jpg"
+					src="${pageContext.request.contextPath }/res/slides/images/3.png"
 					alt=""></li>
 			</ul>
 		</div>

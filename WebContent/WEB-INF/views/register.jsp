@@ -24,13 +24,13 @@
 
 	<div class="container register_body">
 		<div class="row">
-			<div class="col-lg-7 register_logo">
+			<div class="col-xs-7 register_logo">
 				<img alt=""
 					src="${pageContext.request.contextPath }/res/images/register_logo.png">
 			</div>
 
-			<div class="col-lg-5">
-				<div class="col-lg-7">
+			<div class="col-xs-5">
+				<div class="col-xs-7">
 					<form:form action="${url }" method="post" modelAttribute="user">
 
 						<c:if test="${user.id != null }">

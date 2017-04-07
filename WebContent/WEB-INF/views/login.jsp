@@ -19,7 +19,7 @@
 
 	<div class="container">
 
-		<div class="col-lg-5 col-lg-offset-3">
+		<div class="col-xs-5 col-xs-offset-3">
 			<form action="validate" method="POST">
 				<div class="form-group">
 					<label for="username">账　号: </label> <input
@@ -32,7 +32,7 @@
 						name="password" placeholder="密码">
 				</div>
 				<div class="error"></div>
-				<a class="btn btn-default submit" href="#" role="button">登录</a>
+				<a class="btn btn-default submit" role="button">登录</a>
 			</form>
 		</div>
 	</div>
